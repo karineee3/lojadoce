@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Produtos - Doce Império</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">Doce Império</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container mt-5">
+            <h2 class="text-center">Gerenciamento de Produtos</h2>
+            <!-- Abas -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="cadastrar-tab" data-toggle="tab" href="#cadastrar" role="tab" aria-controls="cadastrar" aria-selected="true">Cadastrar Produto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="editar-tab" data-toggle="tab" href="#editar" role="tab" aria-controls="editar" aria-selected="false">Editar Produto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="excluir-tab" data-toggle="tab" href="#excluir" role="tab" aria-controls="excluir" aria-selected="false">Excluir Produto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="listar-tab" data-toggle="tab" href="#listar" role="tab" aria-controls="listar" aria-selected="false">Listar Produtos</a>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-3" id="myTabContent">
+                <!-- Aba de Cadastro -->
+                <div class="tab-pane fade show active" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
+                    <form id="cadastroProduto" onsubmit="cadastrarProduto(event)">
+                        <div class="form-group">
+                            <label for="nomeProduto">Nome do Produto</label>
+                            <input type="text" class="form-control" id="nomeProduto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricaoProduto">Descrição do Produto</label>
+                            <textarea class="form-control" id="descricaoProduto" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="precoProduto">Preço do Produto</label>
+                            <input type="number" class="form-control" id="precoProduto" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagemProduto">Imagem do Produto</label>
+                            <input type="file" class="form-control-file" id="imagemProduto" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Cadastrar Produto</button>
+                    </form>
+                </div>
+
+                <!-- Aba de Edição -->
+                <div class="tab-pane fade" id="editar" role="tabpanel" aria-labelledby="editar-tab">
+                    <form id="edicaoProduto" onsubmit="editarProduto(event)">
+                        <div class="form-group">
+                            <label for="idProduto">ID do Produto</label>
+                            <input type="number" class="form-control" id="idProduto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="novoNomeProduto">Novo Nome do Produto</label>
+                            <input type="text" class="form-control" id="novoNomeProduto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="novaDescricaoProduto">Nova Descrição do Produto</label>
+                            <textarea class="form-control" id="novaDescricaoProduto" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="novoPrecoProduto">Novo Preço do Produto</label>
+                            <input type="number" class="form-control" id="novoPrecoProduto" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="novaImagemProduto">Nova Imagem do Produto</label>
+                            <input type="file" class="form-control-file" id="novaImagemProduto" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Editar Produto</button>
+                    </form>
+                </div>
+
+                <!-- Aba de Exclusão -->
+                <div class="tab-pane fade" id="excluir" role="tabpanel" aria-labelledby="excluir-tab">
+                    <form onsubmit="removerProduto(event)">
+                        <div class="form-group">
+                            <label for="idProdutoExcluir">ID do Produto</label>
+                            <input type="number" class="form-control" id="idProdutoExcluir" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Excluir Produto</button>
+                    </form>
+                </div>
+
+                <!-- Aba de Listagem -->
+                <div class="tab-pane fade" id="listar" role="tabpanel" aria-labelledby="listar-tab">
+                    <h4>Lista de Produtos</h4>
+                    <div id="listaProdutos"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Doce Império. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="gerenciamento.js"></script>
+</body>
+</html>

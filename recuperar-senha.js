@@ -1,25 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const recuperarSenhaForm = document.getElementById('recuperarSenhaForm');
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("recuperarSenhaForm");
 
-    recuperarSenhaForm.addEventListener('submit', function(event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const email = document.getElementById('emailRecuperar').value;
+        const emailInput = document.getElementById("emailRecuperar").value.trim();
 
-        // Recupera os usuários registrados no localStorage
-        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-
-        // Verifica se o email existe no banco de dados local (localStorage)
-        const usuario = usuarios.find(usuario => usuario.email === email);
-
-        if (usuario) {
-            alert('Um link para recuperação de senha foi enviado para seu email.');
-            // Aqui você poderia enviar um email real ou gerar um link de recuperação
-
-            // Redirecionar para a página de login após o envio do link
-            window.location.href = 'login.html';
+        if (validarEmail(emailInput)) {
+            if (enviarEmailRecuperacao(emailInput)) {
+                exibirMensagem("Um link para redefinir sua senha foi enviado para o email.", "success");
+            } else {
+                exibirMensagem("Email não encontrado em nosso sistema.", "danger");
+            }
         } else {
-            alert('Email não encontrado. Verifique e tente novamente.');
+            exibirMensagem("Por favor, insira um email válido.", "warning");
         }
     });
+
+    function validarEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function enviarEmailRecuperacao(email) {
+        // Simulação de envio de email e validação.
+        const usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+        return usuariosRegistrados.some(usuario => usuario.email === email);
+    }
+
+    function exibirMensagem(mensagem, tipo) {
+        const container = document.querySelector(".container");
+        const alertDiv = document.createElement("div");
+        alertDiv.className = `alert alert-${tipo} mt-3`;
+        alertDiv.textContent = mensagem;
+
+        container.insertBefore(alertDiv, container.firstChild);
+
+        setTimeout(() => alertDiv.remove(), 5000);
+    }
 });
+

@@ -1,0 +1,11 @@
+
+
+
+
+
+
+#successMessage {
+    font-size: 1.2rem;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+}

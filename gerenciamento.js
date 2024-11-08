@@ -1,18 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Carregar produtos do localStorage
     let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
 
-    // Função para listar os produtos
     function listarProdutos() {
         const listaDiv = document.getElementById('listaProdutos');
-        listaDiv.innerHTML = ''; // Limpa a lista para atualizá-la
+        listaDiv.innerHTML = '';
 
         if (produtos.length === 0) {
             listaDiv.innerHTML = '<p>Nenhum produto cadastrado.</p>';
             return;
         }
 
-        // Exibe os produtos
         produtos.forEach(produto => {
             const produtoDiv = document.createElement('div');
             produtoDiv.classList.add('produto-item');
@@ -26,98 +23,80 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Função para cadastrar um produto
     function cadastrarProduto(event) {
         event.preventDefault();
-
-        const nomeProduto = document.getElementById('nomeProduto').value;
-        const descricaoProduto = document.getElementById('descricaoProduto').value;
-        const precoProduto = document.getElementById('precoProduto').value;
+        const nomeProduto = document.getElementById('nomeProduto').value.trim();
+        const descricaoProduto = document.getElementById('descricaoProduto').value.trim();
+        const precoProduto = parseFloat(document.getElementById('precoProduto').value);
         const imagemProduto = document.getElementById('imagemProduto').files[0];
 
-        // Validação dos campos
-        if (!nomeProduto || !descricaoProduto || !precoProduto || !imagemProduto) {
-            alert('Todos os campos devem ser preenchidos corretamente!');
+        if (!nomeProduto || !descricaoProduto || isNaN(precoProduto) || precoProduto <= 0 || !imagemProduto) {
+            alert('Preencha todos os campos corretamente!');
             return;
         }
 
-        if (isNaN(precoProduto) || precoProduto <= 0) {
-            alert('Por favor, insira um preço válido!');
+        if (produtos.some(p => p.nome.toLowerCase() === nomeProduto.toLowerCase())) {
+            alert('Produto com esse nome já existe!');
             return;
         }
 
         const reader = new FileReader();
         reader.onloadend = function () {
             const produto = {
-                id: Date.now(), // Gera um ID único com o timestamp
+                id: Date.now(),
                 nome: nomeProduto,
                 descricao: descricaoProduto,
-                preco: parseFloat(precoProduto),
+                preco: precoProduto,
                 imagem: reader.result,
             };
 
-            // Verifica se já existe um produto com o mesmo nome
-            if (produtos.some(p => p.nome.toLowerCase() === produto.nome.toLowerCase())) {
-                alert('Produto com esse nome já existe!');
-                return;
-            }
-
             produtos.push(produto);
             localStorage.setItem('produtos', JSON.stringify(produtos));
-
+            listarProdutos();
             document.getElementById('cadastroProduto').reset();
             alert('Produto cadastrado com sucesso!');
-            listarProdutos();
         };
 
         reader.readAsDataURL(imagemProduto);
     }
 
-    // Função para editar um produto
     function editarProduto(event) {
         event.preventDefault();
         const nomeProduto = document.getElementById('novoNomeProduto').value.trim().toLowerCase();
-        const descricaoProduto = document.getElementById('novaDescricaoProduto').value;
+        const descricaoProduto = document.getElementById('novaDescricaoProduto').value.trim();
         const precoProduto = parseFloat(document.getElementById('novoPrecoProduto').value);
         const imagemProduto = document.getElementById('novaImagemProduto').files[0];
 
-        if (!nomeProduto) {
-            alert('Por Favor, insira o nome do produto!');
+        let produtoIndex = produtos.findIndex(produto => produto.nome.toLowerCase() === nomeProduto);
+
+        if (produtoIndex === -1) {
+            alert('Produto não encontrado!');
             return;
         }
 
-        if (nome) produtos[produtoIndex].nome = nome;
-        if (descricao) produtos[produtoIndex].descricao = descricao;
-        if (preco) produtos[produtoIndex].preco = preco;
+        if (descricaoProduto) produtos[produtoIndex].descricao = descricaoProduto;
+        if (!isNaN(precoProduto) && precoProduto > 0) produtos[produtoIndex].preco = precoProduto;
 
-        if (imagem) {
+        if (imagemProduto) {
             const reader = new FileReader();
             reader.onloadend = function () {
                 produtos[produtoIndex].imagem = reader.result;
                 localStorage.setItem('produtos', JSON.stringify(produtos));
-                alert('Produto editado com sucesso!');
                 listarProdutos();
+                alert('Produto editado com sucesso!');
             };
-            reader.readAsDataURL(imagem);
+            reader.readAsDataURL(imagemProduto);
         } else {
             localStorage.setItem('produtos', JSON.stringify(produtos));
-            alert('Produto editado com sucesso!');
             listarProdutos();
+            alert('Produto editado com sucesso!');
         }
     }
 
-    // Função para excluir um produto
     function excluirProduto(event) {
         event.preventDefault();
-
-        // Obtém o nome do produto inserido no campo de texto
         const nome = document.getElementById('idProdutoExcluir').value.trim().toLowerCase();
-        if (nome === '') {
-            alert('Por favor, insira o nome do produto.');
-            return;
-        }
 
-        // Encontra o índice do produto pelo nome
         const produtoIndex = produtos.findIndex(produto => produto.nome.toLowerCase() === nome);
 
         if (produtoIndex === -1) {
@@ -125,25 +104,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Remove o produto do array
         produtos.splice(produtoIndex, 1);
-
-        // Atualiza o localStorage
         localStorage.setItem('produtos', JSON.stringify(produtos));
-
-        alert('Produto excluído com sucesso!');
-
-        // Limpa o campo de entrada
-        document.getElementById('idProdutoExcluir').value = '';
-
-        // Atualiza a lista de produtos
         listarProdutos();
+        alert('Produto excluído com sucesso!');
+        document.getElementById('idProdutoExcluir').value = '';
     }
 
-    // Chama a função de listar produtos ao carregar a página
     listarProdutos();
-
-    // Adiciona os eventos de submit para cadastro, edição e exclusão de produto
     document.getElementById('cadastroProduto').addEventListener('submit', cadastrarProduto);
     document.getElementById('editarProduto').addEventListener('submit', editarProduto);
     document.getElementById('excluirProduto').addEventListener('submit', excluirProduto);

@@ -80,17 +80,14 @@
                 <div class="tab-pane fade" id="editar" role="tabpanel" aria-labelledby="editar-tab">
                     <form id="editarProduto">
                         <div class="form-group">
-                            <label for="idProduto">ID do Produto</label>
-                            <input type="number" class="form-control" id="idProduto" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="novoNomeProduto">Novo Nome do Produto</label>
+                            <label for="novoNomeProduto">Nome do Produto a Editar</label>
                             <input type="text" class="form-control" id="novoNomeProduto" required>
                         </div>
                         <div class="form-group">
-                            <label for="novaDescricaoProduto">Nova Descrição do Produto</label>
-                         <input type="text" class="form-control" id="novaDescricaoProduto" required>
+                            <label for="novaDescricaoProduto">Nova Descrição </label>
+                            <input type="text" class="form-control" id="novaDescricaoProduto" required>
                         </div>
+
                         <div class="form-group">
                             <label for="novoPrecoProduto">Novo Preço do Produto</label>
                             <input type="number" class="form-control" id="novoPrecoProduto"  required>
@@ -123,6 +120,8 @@
                 </div>
             </div>
         </section>
+
+        <div id="listaProdutos"></div>
     </main>
 
     <footer class="bg-light text-center py-4">

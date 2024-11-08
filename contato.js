@@ -1,7 +1,6 @@
-// contato.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
 
     contactForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Previne o envio padrão do formulário
@@ -11,11 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        // Aqui você pode adicionar o código para enviar os dados para um servidor
-        // Para este exemplo, vamos apenas exibir uma mensagem de sucesso
-        alert(`Mensagem enviada com sucesso!\n\nNome: ${name}\nEmail: ${email}\nMensagem: ${message}`);
+        // Exibe a mensagem de sucesso
+        successMessage.textContent = `Obrigado, ${name}! Sua mensagem foi enviada com sucesso.`;
+        successMessage.classList.remove('d-none');
 
-        // Limpar o formulário após o envio
+        // Esconde a mensagem após 5 segundos
+        setTimeout(() => {
+            successMessage.classList.add('d-none');
+        }, 5000);
+
+        // Limpa o formulário após o envio
         contactForm.reset();
     });
 });

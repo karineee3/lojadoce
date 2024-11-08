@@ -76,15 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Função para editar um produto
     function editarProduto(event) {
         event.preventDefault();
-        const id = parseInt(document.getElementById('idProduto').value);
-        const nome = document.getElementById('novoNomeProduto').value;
-        const descricao = document.getElementById('novaDescricaoProduto').value;
-        const preco = parseFloat(document.getElementById('novoPrecoProduto').value);
-        const imagem = document.getElementById('novaImagemProduto').files[0];
+        const nomeProduto = document.getElementById('novoNomeProduto').value.trim().toLowerCase();
+        const descricaoProduto = document.getElementById('novaDescricaoProduto').value;
+        const precoProduto = parseFloat(document.getElementById('novoPrecoProduto').value);
+        const imagemProduto = document.getElementById('novaImagemProduto').files[0];
 
-        const produtoIndex = produtos.findIndex(produto => produto.id === id);
-        if (produtoIndex === -1) {
-            alert('Produto não encontrado!');
+        if (!nomeProduto) {
+            alert('Por Favor, insira o nome do produto!');
             return;
         }
 

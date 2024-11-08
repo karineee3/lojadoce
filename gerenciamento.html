@@ -55,30 +55,30 @@
             <div class="tab-content mt-3" id="myTabContent">
                 <!-- Aba de Cadastro -->
                 <div class="tab-pane fade show active" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
-                    <form id="cadastroProduto" onsubmit="cadastrarProduto(event)">
+                    <form id="cadastroProduto">
                         <div class="form-group">
                             <label for="nomeProduto">Nome do Produto</label>
                             <input type="text" class="form-control" id="nomeProduto" required>
                         </div>
                         <div class="form-group">
                             <label for="descricaoProduto">Descrição do Produto</label>
-                            <textarea class="form-control" id="descricaoProduto" required></textarea>
+                            <input type="text" class="form-control" id="descricaoProduto" required>
                         </div>
                         <div class="form-group">
                             <label for="precoProduto">Preço do Produto</label>
-                            <input type="number" class="form-control" id="precoProduto" step="0.01" required>
+                            <input type="number" class="form-control" id="precoProduto"  required>
                         </div>
                         <div class="form-group">
                             <label for="imagemProduto">Imagem do Produto</label>
-                            <input type="file" class="form-control-file" id="imagemProduto" accept="image/*" required>
+                            <input type="file" class="form-control-file" id="imagemProduto" required>
                         </div>
-                        <button type="submit" class="btn btn-success">Cadastrar Produto</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
                     </form>
                 </div>
 
                 <!-- Aba de Edição -->
                 <div class="tab-pane fade" id="editar" role="tabpanel" aria-labelledby="editar-tab">
-                    <form id="edicaoProduto" onsubmit="editarProduto(event)">
+                    <form id="editarProduto">
                         <div class="form-group">
                             <label for="idProduto">ID do Produto</label>
                             <input type="number" class="form-control" id="idProduto" required>
@@ -89,15 +89,15 @@
                         </div>
                         <div class="form-group">
                             <label for="novaDescricaoProduto">Nova Descrição do Produto</label>
-                            <textarea class="form-control" id="novaDescricaoProduto" required></textarea>
+                         <input type="text" class="form-control" id="novaDescricaoProduto" required>
                         </div>
                         <div class="form-group">
                             <label for="novoPrecoProduto">Novo Preço do Produto</label>
-                            <input type="number" class="form-control" id="novoPrecoProduto" step="0.01" required>
+                            <input type="number" class="form-control" id="novoPrecoProduto"  required>
                         </div>
                         <div class="form-group">
                             <label for="novaImagemProduto">Nova Imagem do Produto</label>
-                            <input type="file" class="form-control-file" id="novaImagemProduto" accept="image/*">
+                            <input type="file" class="form-control-file" id="novaImagemProduto" required>
                         </div>
                         <button type="submit" class="btn btn-warning">Editar Produto</button>
                     </form>
@@ -105,14 +105,16 @@
 
                 <!-- Aba de Exclusão -->
                 <div class="tab-pane fade" id="excluir" role="tabpanel" aria-labelledby="excluir-tab">
-                    <form onsubmit="removerProduto(event)">
+                    <form id="excluirProduto">
                         <div class="form-group">
-                            <label for="idProdutoExcluir">ID do Produto</label>
-                            <input type="number" class="form-control" id="idProdutoExcluir" required>
+                            <label for="idProdutoExcluir">Nome do Produto</label>
+                            <input type="text" class="form-control" id="idProdutoExcluir" required>
                         </div>
                         <button type="submit" class="btn btn-danger">Excluir Produto</button>
                     </form>
                 </div>
+                
+                
 
                 <!-- Aba de Listagem -->
                 <div class="tab-pane fade" id="listar" role="tabpanel" aria-labelledby="listar-tab">

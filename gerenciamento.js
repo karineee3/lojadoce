@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Carregar produtos do localStorage
     let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
 
+    // Função para listar os produtos
     function listarProdutos() {
         const listaDiv = document.getElementById('listaProdutos');
-        listaDiv.innerHTML = '';
+        listaDiv.innerHTML = ''; // Limpa a lista para atualizá-la
 
         if (produtos.length === 0) {
             listaDiv.innerHTML = '<p>Nenhum produto cadastrado.</p>';
             return;
         }
 
+        // Exibe os produtos
         produtos.forEach(produto => {
             const produtoDiv = document.createElement('div');
             produtoDiv.classList.add('produto-item');
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Função para cadastrar um produto
     function cadastrarProduto(event) {
         event.preventDefault();
 
@@ -31,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const precoProduto = document.getElementById('precoProduto').value;
         const imagemProduto = document.getElementById('imagemProduto').files[0];
 
+        // Validação dos campos
         if (!nomeProduto || !descricaoProduto || !precoProduto || !imagemProduto) {
             alert('Todos os campos devem ser preenchidos corretamente!');
             return;
@@ -44,14 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onloadend = function () {
             const produto = {
-                id: Date.now(),
+                id: Date.now(), // Gera um ID único com o timestamp
                 nome: nomeProduto,
                 descricao: descricaoProduto,
                 preco: parseFloat(precoProduto),
                 imagem: reader.result,
             };
 
-            if (produtos.some(p => p.nome === produto.nome)) {
+            // Verifica se já existe um produto com o mesmo nome
+            if (produtos.some(p => p.nome.toLowerCase() === produto.nome.toLowerCase())) {
                 alert('Produto com esse nome já existe!');
                 return;
             }
@@ -67,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(imagemProduto);
     }
 
+    // Função para editar um produto
     function editarProduto(event) {
         event.preventDefault();
         const id = parseInt(document.getElementById('idProduto').value);
@@ -101,28 +108,49 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function removerProduto(event) {
+    // Função para excluir um produto
+    function excluirProduto(event) {
         event.preventDefault();
-        const id = parseInt(document.getElementById('idProdutoExcluir').value);
-        const produtoIndex = produtos.findIndex(produto => produto.id === id);
+
+        // Obtém o nome do produto inserido no campo de texto
+        const nome = document.getElementById('idProdutoExcluir').value.trim().toLowerCase();
+        if (nome === '') {
+            alert('Por favor, insira o nome do produto.');
+            return;
+        }
+
+        // Encontra o índice do produto pelo nome
+        const produtoIndex = produtos.findIndex(produto => produto.nome.toLowerCase() === nome);
 
         if (produtoIndex === -1) {
             alert('Produto não encontrado!');
             return;
         }
 
+        // Remove o produto do array
         produtos.splice(produtoIndex, 1);
+
+        // Atualiza o localStorage
         localStorage.setItem('produtos', JSON.stringify(produtos));
 
         alert('Produto excluído com sucesso!');
+
+        // Limpa o campo de entrada
         document.getElementById('idProdutoExcluir').value = '';
+
+        // Atualiza a lista de produtos
         listarProdutos();
     }
 
-    listarProdutos(); 
+    // Chama a função de listar produtos ao carregar a página
+    listarProdutos();
 
+    // Adiciona os eventos de submit para cadastro, edição e exclusão de produto
     document.getElementById('cadastroProduto').addEventListener('submit', cadastrarProduto);
+    document.getElementById('editarProduto').addEventListener('submit', editarProduto);
+    document.getElementById('excluirProduto').addEventListener('submit', excluirProduto);
 });
+
 
 
 

@@ -1,11 +1,428 @@
-
-
-
-
-
-
-#successMessage {
-    font-size: 1.2rem;
-    text-align: center;
-    transition: opacity 0.5s ease-in-out;
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5; /* Cor de fundo mais suave */
+    color: #000000; /* Texto um pouco mais claro para melhorar a leitura */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas */
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease; /* Transição suave de fundo */
+}
+h1, h2, h3 {
+    color: #333;
+    font-weight: 600;
+}
+a {
+    color: #000000; /* Cor de link vibrante */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transição suave para links */
+}
+a:hover {
+    color: #000000; /* Cor mais escura para o efeito de hover */
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+header {
+    background-color: #fff; /* Cor limpa e brilhante */
+    padding: 15px 0; /* Menos espaço nas laterais para deixar o cabeçalho mais compacto */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Sombra mais leve e sutil */
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Garante que o cabeçalho fique acima de outros elementos */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+header:hover {
+    background-color: #f9f9f9; /* Cor sutilmente mais escura ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave ao hover */
+}
+
+header .logo {
+    font-size: 1.6em; /* Tamanho de logo mais adequado para um design minimalista */
+    font-weight: 600; /* Negrito mais suave */
+    color: #333;
+    text-align: center;
+    text-transform: uppercase; /* Letras maiúsculas para dar um ar moderno */
+    letter-spacing: 1px; /* Menos espaçamento entre as letras para um visual mais clean */
+    transition: color 0.3s ease; /* Transição suave para cor */
+}
+
+header .logo:hover {
+    color: #ff6f61; /* Cor de destaque mais moderna ao passar o mouse */
+}
+
+
+/* Navbar Brand */
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6f61; /* Cor vibrante para o nome da marca */
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    letter-spacing: 1px; /* Espaçamento entre letras */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transições para cor e transformação */
+}
+.navbar-brand:hover {
+    color: #d55d52; /* Cor um pouco mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento do tamanho ao passar o mouse */
+}
+
+/* Links de navegação */
+.nav-link {
+    font-size: 1.1rem;
+    color: #333; /* Cor do texto do link */
+    padding: 10px 15px;
+    border-radius: 5px; /* Borda arredondada para os links */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.nav-link:hover {
+    color: #f3c8c8; /* Texto branco ao passar o mouse */
+   
+    border-radius: 5px; /* Mantém a borda arredondada */
+}
+
+/* Ícone do Toggler (hamburguer) */
+.navbar-toggler-icon {
+    background-color: #ff6f61; /* Cor de fundo do ícone */
+    border-radius: 5px; /* Tornando o ícone um pouco mais suave */
+    transition: background-color 0.3s ease;
+}
+.navbar-toggler-icon:hover {
+    background-color: #d55d52; /* Cor um pouco mais escura ao passar o mouse */
+}
+
+/* Banner */
+.banner {
+    margin-bottom: 40px; /* Menor distância para um layout mais compacto e clean */
+    background-color: #fff4f4; /* Cor de fundo sutil e moderna */
+    padding: 40px 20px; /* Padding mais equilibrado para um visual mais leve */
+    border-radius: 8px; /* Bordas arredondadas para um toque mais suave */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra leve e suave para destacar o banner */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeitos de transição suaves */
+}
+
+.banner:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse para dar um toque moderno */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* Sombra mais intensa no hover para mais destaque */
+}
+
+/* Jumbotron Modernizado */
+.jumbotron {
+    background: rgba(255, 111, 97, 0.1); /* Cor suave com opacidade */
+    color: #333;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra suave e moderna */
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jumbotron:hover {
+    background: rgba(255, 111, 97, 0.2); /* Efeito de hover mais sutil */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Sombra mais suave ao passar o mouse */
+}
+
+.jumbotron h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    color: #222; /* Cor de texto mais suave */
+    text-transform: uppercase;
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #666; /* Texto mais suave */
+    line-height: 1.6;
+}
+
+.jumbotron .btn {
+    background-color: #ff6f61; /* Cor de botão mais suave */
+    color: white;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron .btn:hover {
+    background-color: #e55a4e;
+    transform: scale(1.05); /* Efeito de escala suave */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mais suave ao hover */
+}
+/* Seção de Produtos */
+h2 {
+    font-size: 2.4rem; /* Diminui um pouco o tamanho do título para mais leveza */
+    font-weight: 600; /* Peso de fonte mais leve e moderno */
+    margin-bottom: 30px; /* Menor margem para um layout mais compacto */
+    text-align: center; /* Centraliza o título */
+    color: #333; /* Cor neutra e sofisticada */
+    text-transform: uppercase; /* Título em maiúsculas para maior impacto */
+    letter-spacing: 1px; /* Espaçamento leve entre as letras */
+}
+
+/* Cartões de Produtos */
+.card {
+    border: none;
+    border-radius: 12px; /* Bordas mais sutis e suaves */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05); /* Sombra mais suave e discreta */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* Transições mais rápidas */
+    overflow: hidden;
+    background-color: #fff; /* Fundo claro para manter a leveza */
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Efeito de elevação mais sutil */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra um pouco mais forte no hover */
+    background-color: #f9f9f9; /* Cor de fundo sutil ao passar o mouse */
+}
+
+.card-img-top {
+    border-radius: 12px 12px 0 0; /* Bordas arredondadas mais suaves */
+    object-fit: cover;
+    height: 200px; /* Altura da imagem mais ajustada */
+}
+
+.card-body {
+    padding: 20px; /* Padding mais leve para o conteúdo */
+}
+
+.card-title {
+    font-size: 1.4rem; /* Tamanho de fonte mais moderado */
+    font-weight: 600; /* Peso de fonte mais leve */
+    color: #333;
+    margin-bottom: 15px; /* Menor espaço abaixo do título */
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Espaçamento mais sutil entre as letras */
+}
+
+.card-text {
+    font-size: 1rem; /* Fonte mais compacta */
+    color: #777; /* Cor do texto mais neutra */
+    margin-bottom: 15px; /* Menor espaçamento entre o texto e o botão */
+}
+
+.card .btn {
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 30px; /* Bordas arredondadas */
+    padding: 8px 20px; /* Tamanho do botão mais ajustado */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem; /* Tamanho da fonte ajustado para mais leveza */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Transições rápidas */
+}
+
+.card .btn:hover {
+    background-color: #e55a4e;
+    transform: scale(1.03); /* Efeito de aumento mais sutil */
+}
+
+.card .btn:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 111, 97, 0.7); /* Efeito de foco mais suave */
+}
+
+
+/* Seção de Depoimentos */
+blockquote {
+    background-color: #ffffff; /* Fundo branco para mais leveza */
+    border-left: 3px solid #ff6f61; /* Linha de destaque mais fina */
+    padding: 20px 15px; /* Padding mais suave e compacto */
+    font-style: italic;
+    color: #666; /* Cor mais suave e neutra para o texto */
+    border-radius: 8px; /* Bordas mais sutis para um visual mais clean */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    transition: box-shadow 0.2s ease, transform 0.2s ease; /* Transição mais rápida */
+    margin-bottom: 20px; /* Menor espaçamento entre os depoimentos */
+}
+
+blockquote:hover {
+    transform: translateY(-4px); /* Efeito de elevação mais sutil */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra suave e mais intensa no hover */
+}
+
+blockquote footer {
+    font-size: 1rem; /* Fonte mais compacta */
+    font-weight: 500; /* Peso da fonte mais leve */
+    color: #ff6f61; /* Cor destacada para o nome do autor */
+    margin-top: 10px; /* Menos espaço entre o depoimento e o autor */
+    text-align: right; /* Alinha o nome do autor à direita */
+    letter-spacing: 0.5px; /* Espaçamento sutil entre as letras */
+}
+
+blockquote footer::before {
+    content: "— "; /* Símbolo antes do nome do autor */
+    font-size: 1.2rem;
+    color: #ff6f61;
+    font-weight: bold;
+}
+
+
+/* Newsletter */
+.newsletter {
+    background-color: #ffffff; /* Fundo branco para um visual mais clean */
+    padding: 40px 0; /* Menos padding para uma seção mais compacta */
+    border-radius: 12px; /* Bordas suavizadas para um visual mais moderno */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave e discreta */
+    text-align: center;
+    max-width: 900px; /* Limita a largura da seção */
+    margin: 0 auto; /* Centraliza a seção */
+    transition: box-shadow 0.3s ease; /* Transição suave para hover */
+}
+
+.newsletter h2 {
+    font-size: 2rem; /* Tamanho do título reduzido para um visual mais sutil */
+    font-weight: 600; /* Peso da fonte mais leve */
+    color: #ff6f61;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newsletter p {
+    font-size: 1rem;
+    color: #333; /* Cor de texto mais neutra */
+    margin-bottom: 25px;
+    line-height: 1.4; /* Ajuste na altura da linha para legibilidade */
+}
+
+.newsletter form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* Aumenta o espaço entre os campos */
+    flex-wrap: wrap;
+}
+
+.newsletter input[type="email"] {
+    width: 260px;
+    padding: 12px;
+    border-radius: 30px; /* Bordas mais suaves */
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease; /* Transição mais rápida para foco */
+}
+
+.newsletter input[type="email"]:focus {
+    border-color: #ff6f61; /* Cor de foco mais vibrante */
+}
+
+.newsletter button {
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 30px; /* Bordas bem arredondadas para o botão */
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.newsletter button:hover {
+    background-color: #e55a4e;
+    transform: translateY(-3px); /* Efeito de elevação mais suave */
+}
+
+.newsletter button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 111, 97, 0.7); /* Efeito de foco leve no botão */
+}
+
+
+
+/* Rodapé */
+footer {
+    background-color: #ffffff; /* Fundo branco para um visual mais clean e moderno */
+    padding: 30px 0; /* Redução do padding para tornar o rodapé mais compacto */
+    color: #555; /* Cor mais suave e neutra */
+    font-size: 1rem;
+    text-align: center;
+    border-top: 1px solid #ff6f61; /* Linha de separação mais sutil */
+    transition: background-color 0.3s ease; /* Transição suave no fundo */
+}
+
+footer a {
+    color: #ff6f61;
+    text-decoration: none;
+    font-weight: 600; /* Torna o link mais visível */
+    transition: color 0.2s ease; /* Transição suave na cor */
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #e55a4e; /* Cor mais escura no hover */
+}
+
+footer .social-icons {
+    margin-top: 15px; /* Menor espaçamento para deixar o rodapé mais compacto */
+}
+
+footer .social-icons a {
+    font-size: 1.4rem; /* Ícones um pouco menores para um visual mais equilibrado */
+    margin: 0 8px;
+    color: #ff6f61;
+    transition: transform 0.2s ease, color 0.2s ease; /* Transições mais rápidas */
+}
+
+footer .social-icons a:hover {
+    transform: translateY(-4px); /* Efeito de elevação mais sutil nas redes sociais */
+    color: #e55a4e; /* Cor mais escura no hover */
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+    footer {
+        padding: 20px 10px; /* Menor padding em telas pequenas */
+    }
+
+    footer a {
+        font-size: 1.1rem; /* Fonte levemente maior para melhor legibilidade em dispositivos móveis */
+    }
+
+    footer .social-icons a {
+        font-size: 1.6rem; /* Ícones um pouco maiores para facilitar o clique */
+        margin: 0 6px; /* Menor espaçamento entre ícones */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

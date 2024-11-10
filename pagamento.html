@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento - Doce Império</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -33,6 +34,7 @@
         <section class="container mt-5">
             <h2 class="text-center">Pagamento</h2>
             <form id="form-pagamento" class="mt-4">
+                <!-- Informações de pagamento -->
                 <div class="form-group">
                     <label for="nome">Nome no Cartão</label>
                     <input type="text" class="form-control" id="nome" required>
@@ -51,15 +53,85 @@
                         <input type="text" class="form-control" id="cvv" required>
                     </div>
                 </div>
+
+                <!-- Escolha do tipo de pagamento -->
+                <div class="form-group">
+                    <label for="tipo-pagamento">Escolha o Tipo de Pagamento</label>
+                    <select class="form-control" id="tipo-pagamento" required>
+                        <option value="" disabled selected>Selecione o método de pagamento</option>
+                        <option value="cartao">Cartão de Crédito ou Débito</option>
+                        <option value="pix">Pix</option>
+                    </select>
+                </div>
+
+                <!-- Cartão de Crédito ou Débito -->
+                <div id="cartao" class="form-group" style="display: none;">
+                    <label for="tipo-cartao">Tipo de Cartão</label>
+                    <select class="form-control" id="tipo-cartao" required>
+                        <option value="" disabled selected>Selecione o tipo de cartão</option>
+                        <option value="credito">Cartão de Crédito</option>
+                        <option value="debito">Cartão de Débito</option>
+                    </select>
+                </div>
+
+                <!-- Escolha da marca do cartão (aparece apenas quando selecionado Cartão de Crédito ou Débito) -->
+                <div id="marca-cartao" class="form-group" style="display: none;">
+                    <label for="marca-cartao">Escolha a Marca do Cartão</label>
+                    <select class="form-control" id="marca-cartao">
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">MasterCard</option>
+                        <option value="elo">Elo</option>
+                        <option value="amex">American Express</option>
+                    </select>
+                </div>
+
+                <!-- QR Code do Pix (aparece quando selecionado Pix) -->
+                <div id="qr-code-pix" class="form-group" style="display: none;">
+                    <label for="pix-qrcode">QR Code do Pix</label>
+                    <img id="pix-qrcode" src="https://www.gerarpix.com/qr_code_example.png" alt="QR Code Pix" class="img-fluid">
+                    <p class="mt-2">Escaneie o QR Code para realizar o pagamento via Pix.</p>
+                </div>
+
+                <!-- Informações de entrega -->
+                <h3 class="mt-4">Informações de Entrega</h3>
+                <div class="form-group">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="estado">Estado</label>
+                        <input type="text" class="form-control" id="estado" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" required>
+                </div>
+
+                <!-- Taxa de entrega -->
+                <div class="form-group">
+                    <label for="taxa-entrega">Taxa de Entrega</label>
+                    <input type="text" class="form-control" id="taxa-entrega" readonly>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Finalizar Compra</button>
             </form>
         </section>
     </main>
 
     <footer class="text-center mt-5">
-        <p>&copy; 2024 Doces Deliciosos. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Doce Império. Todos os direitos reservados.</p>
+        <p>Telefone: (48) 996803140</p> 
     </footer>
 
     <script src="pagamento.js"></script> <!-- Certifique-se de que o caminho está correto -->
 </body>
 </html>
+
+
+

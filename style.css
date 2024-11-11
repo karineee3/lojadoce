@@ -7,37 +7,31 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5; /* Cor de fundo mais suave */
-    color: #000000; /* Texto um pouco mais claro para melhorar a leitura */
-    line-height: 1.6; /* Aumenta o espaçamento entre linhas */
+    background-color: #f7f7f7; /* Tom neutro e suave */
+    color: #333; /* Contraste mais leve para melhor legibilidade */
+    line-height: 1.8; /* Maior espaçamento entre linhas */
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease; /* Transição suave de fundo */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transições suaves */
 }
 h1, h2, h3 {
-    color: #333;
-    font-weight: 600;
-}
-a {
-    color: #000000; /* Cor de link vibrante */
-    text-decoration: none;
-    transition: color 0.3s ease; /* Transição suave para links */
-}
-a:hover {
-    color: #000000; /* Cor mais escura para o efeito de hover */
+    color: #222; /* Tom mais escuro para títulos */
+    font-weight: 700; /* Títulos mais destacados */
+    margin-bottom: 1rem; /* Espaçamento para títulos */
 }
 .container {
-    max-width: 1200px;
+    max-width: 1100px; /* Ajuste para se alinhar com designs modernos */
     margin: 0 auto;
     padding: 20px;
+    
+    border-radius: 8px; /* Cantos levemente arredondados */
 }
-header {
-    background-color: #000000;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+header h1 {
+    margin: 0;
+    font-size: 2rem; /* Tamanho ajustado para um header impactante */
+    letter-spacing: 1px; /* Leve espaçamento para sofisticação */
 }
+
 
 /* Cabeçalho */
 header {
@@ -49,12 +43,19 @@ header {
     left: 0;
     width: 100%;
     z-index: 999; /* Garante que o cabeçalho fique acima de outros elementos */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transições suaves */
 }
 
+/* Efeito de hover no cabeçalho */
 header:hover {
     background-color: #f9f9f9; /* Cor sutilmente mais escura ao passar o mouse */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave ao hover */
+   
+}
+
+/* Adiciona uma linha abaixo do cabeçalho no hover */
+header:hover {
+    border-bottom: 2px solid #ff6f61; /* Linha de destaque ao passar o mouse */
 }
 
 header .logo {
@@ -67,48 +68,50 @@ header .logo {
     transition: color 0.3s ease; /* Transição suave para cor */
 }
 
+/* Efeito de hover no logo */
 header .logo:hover {
     color: #ff6f61; /* Cor de destaque mais moderna ao passar o mouse */
 }
 
-
 /* Navbar Brand */
 .navbar-brand {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 700; /* Fonte mais forte para uma marca mais marcante */
     color: #ff6f61; /* Cor vibrante para o nome da marca */
     text-transform: uppercase; /* Transforma o texto em maiúsculas */
-    letter-spacing: 1px; /* Espaçamento entre letras */
-    transition: color 0.3s ease, transform 0.3s ease; /* Transições para cor e transformação */
+    letter-spacing: 2px; /* Aumentei o espaçamento entre as letras para um visual mais clean */
+    transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease; /* Transições suaves para cor, transformação e espaçamento */
+    padding: 10px 0;
 }
 .navbar-brand:hover {
-    color: #d55d52; /* Cor um pouco mais escura ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento do tamanho ao passar o mouse */
+    color: #d55d52; /* Cor mais escura e sofisticada ao passar o mouse */
+    transform: scale(1.1); /* Aumento mais leve para uma interação mais sutil */
+    letter-spacing: 3px; /* Aumenta o espaçamento das letras ao passar o mouse */
 }
-
-/* Links de navegação */
-.nav-link {
-    font-size: 1.1rem;
-    color: #333; /* Cor do texto do link */
-    padding: 10px 15px;
-    border-radius: 5px; /* Borda arredondada para os links */
-    transition: color 0.3s ease, background-color 0.3s ease;
-}
-.nav-link:hover {
-    color: #f3c8c8; /* Texto branco ao passar o mouse */
-   
-    border-radius: 5px; /* Mantém a borda arredondada */
-}
-
 /* Ícone do Toggler (hamburguer) */
 .navbar-toggler-icon {
-    background-color: #ff6f61; /* Cor de fundo do ícone */
-    border-radius: 5px; /* Tornando o ícone um pouco mais suave */
-    transition: background-color 0.3s ease;
+    background-color: #ff6f61; /* Cor vibrante para o ícone */
+    border-radius: 5px; /* Bordas arredondadas para um design mais suave */
+    width: 30px; /* Ajusta o tamanho do ícone */
+    height: 3px; /* Ajusta a altura das barras */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .navbar-toggler-icon:hover {
-    background-color: #d55d52; /* Cor um pouco mais escura ao passar o mouse */
+    background-color: #d55d52; /* Cor mais escura ao passar o mouse */
+    transform: rotate(90deg); /* Adiciona uma rotação suave ao hover para um efeito interessante */
 }
+/* Ajuste de responsividade para garantir boa aparência em dispositivos móveis */
+@media (max-width: 768px) {
+    .navbar-toggler-icon {
+        width: 35px; /* Aumenta o tamanho do ícone em telas menores */
+        height: 4px; /* Aumenta a altura das barras em telas menores */
+    }
+
+    .navbar-nav {
+        margin-top: 20px; /* Espaço maior no topo para os itens de navegação no mobile */
+    }
+}
+
 
 /* Banner */
 .banner {
@@ -411,7 +414,191 @@ footer .social-icons a:hover {
         margin: 0 6px; /* Menor espaçamento entre ícones */
     }
 }
+/* Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
+/* Corpo */
+body {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.navbar {
+    padding: 1rem 2rem;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-size: 1rem;
+    color: #555;
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #f76c6c;
+    transition: color 0.3s;
+}
+
+.navbar-toggler {
+    border-color: #ddd;
+}
+
+
+/* Seção de Produtos */
+#lista-produtos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem; /* Reduzi o espaçamento entre os produtos */
+    justify-content: space-evenly; /* Distribui os produtos de forma mais equilibrada */
+    margin-top: 2rem; /* Adiciona um pouco de espaço acima dos produtos */
+}
+.produto {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 31%; /* Ajuste a largura para garantir que os itens fiquem mais próximos */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.produto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+.produto-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.produto-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+.produto-info p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.produto-info .preco {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #f76c6c;
+    margin-top: 0.5rem;
+}
+
+.produto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.produto img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    #lista-produtos {
+        justify-content: center;
+    }
+
+    .produto {
+        width: 45%; /* Para tablets e telas médias */
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    #lista-produtos {
+        justify-content: center;
+    }
+
+    .produto {
+        width: 90%; /* Ajuste para os produtos ficarem mais próximos no mobile */
+        max-width: 350px;
+        margin-bottom: 1.5rem; /* Reduz o espaço entre os produtos */
+    }
+}
+
+@media (max-width: 480px) {
+    .produto-info h3 {
+        font-size: 1.3rem; /* Ajuste o tamanho do título */
+    }
+
+    .produto-info p {
+        font-size: 0.9rem; /* Ajuste o tamanho do texto */
+    }
+
+    .produto-info .preco {
+        font-size: 1.4rem; /* Ajuste o tamanho do preço */
+    }
+}
+h2 {
+    color: #f76c6c; /* Cores escuras para títulos */
+    margin-bottom: 1rem;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+/* Formulário de Contato */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+.btn-primary {
+    background-color: #f76c6c;
+    border: none;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
 
 
 
